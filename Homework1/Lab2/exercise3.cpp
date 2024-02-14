@@ -32,9 +32,8 @@ int main()
     cout << "This is what you entered: " << endl;
     // looping through the array, returning each value inside of the array for the user to see, i represents the index value 
     for (int i = 0; i < 3; i++)
-    {
         cout << array[i] << " ";
-    }
+    
 
     // nested for loop
     // this is the first loop we are doing 
@@ -56,8 +55,6 @@ int main()
     cout << endl;
     cout << "This is the array after sorting: " << endl;
       for (int i = 0; i < 3; i++)
-    {
         cout << array[i] << " ";
-    }
     return 0;
 }

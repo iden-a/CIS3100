@@ -14,7 +14,7 @@ int main(){
    // adding all the numbers for the sum_total
     sum_total = num1 + num2 + num3 + num4;
 
-    // diving the sum total by 4 to get the average
+    // dividing the sum total by 4 to get the average
     avg_total = sum_total/ 4;
 
     cout << "The sum of those numbers is " << sum_total << endl;

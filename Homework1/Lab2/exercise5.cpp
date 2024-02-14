@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
     // declaring the response variable
-    string response;
+    char response;
 
     // printing out the game board
     cout << "******************************************************" << endl;
@@ -20,7 +20,7 @@ int main()
     cout << endl;
 
     // if the user types in A as their game choice, they will be prompted with the Choose Your Own Adventure Game
-    if (response == "A")
+    if (response == 'A')
     {
         // declaring the power variable.
         string power;
@@ -116,7 +116,7 @@ int main()
     }
 
     // if the user response is B, they will be prompted with the Madlib Game
-    else if (response == "B")
+    else if (response == 'B')
     {
         string noun, verb, adj;
         int number;

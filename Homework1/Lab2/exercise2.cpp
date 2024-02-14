@@ -29,8 +29,8 @@ int main()
     // this is for the student loans
     double student_loan_debt, monthly_payment, annual_interest; // declaring the debt, monthly payment, and annual interest
     int months = 0;                                             // setting the initial value of months to 0
-    double interest_accrued = 0;
-    double total_interest_accrued = 0;
+    double interest_accrued = 0;                                // initial value of interest accrued is 0
+    double total_interest_accrued = 0;                          // initial value of the total interest accrued is 0
 
     cout << "Enter Annual Salary: ";
     cin >> annual_salary;
@@ -41,8 +41,7 @@ int main()
     cout << "Do you pay student loans? (yes/no): ";
     cin >> loan_response;
 
-    
-
+    // if the user makes less than 12,000
     if (annual_salary <= 12000)
     {
         // if the user has children but does not pay student loans
@@ -85,11 +84,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;        
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= total_interest_accrued;
@@ -122,11 +121,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;        
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= (child_deduction_amount + total_interest_accrued);
@@ -138,6 +137,7 @@ int main()
             tax_paid = annual_salary * 0.06;
     }
 
+    // if the user's salary is between 12,001 - 38,000
     else if (annual_salary >= 12001 && annual_salary <= 38000)
     {
         // if the user has children but does not pay student loans
@@ -180,11 +180,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;        
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= total_interest_accrued;
@@ -217,11 +217,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;       
-                student_loan_debt += interest_accrued;                         
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= (child_deduction_amount + total_interest_accrued);
@@ -233,6 +233,7 @@ int main()
             tax_paid = annual_salary * 0.27;
     }
 
+    // if the user's salary is between 38,001 and 55,000
     else if (annual_salary >= 38001 && annual_salary <= 55000)
     {
 
@@ -276,11 +277,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;        
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                          
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= total_interest_accrued;
@@ -313,11 +314,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;        
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= (child_deduction_amount + total_interest_accrued);
@@ -329,6 +330,7 @@ int main()
             tax_paid = annual_salary * 0.33;
     }
 
+    // if the user makes above 55,000
     else
     {
         // if the user has children but does not pay student loans
@@ -371,11 +373,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;       
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                       
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= total_interest_accrued;
@@ -408,11 +410,11 @@ int main()
 
             while (student_loan_debt > 0)
             {
-                total_interest_accrued += student_loan_debt * monthly_interest; 
-                interest_accrued = student_loan_debt * monthly_interest;        
-                student_loan_debt += interest_accrued;                          
-                student_loan_debt -= monthly_payment;                           
-                months++;                                                      
+                total_interest_accrued += student_loan_debt * monthly_interest;
+                interest_accrued = student_loan_debt * monthly_interest;
+                student_loan_debt += interest_accrued;
+                student_loan_debt -= monthly_payment;
+                months++;
             }
 
             annual_salary -= (child_deduction_amount + total_interest_accrued);
@@ -424,6 +426,7 @@ int main()
             tax_paid = annual_salary * 0.39;
     }
 
+    // printing out the user's information based on their replies
     cout << "___________________________________________________________________________" << endl;
     cout << endl;
     cout << "It will take " << months << " months to pay off your student loans!" << endl;
