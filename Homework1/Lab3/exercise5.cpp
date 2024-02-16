@@ -1,4 +1,7 @@
-#include<iostream>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
 using namespace std;
 /*
 A treasure is hidden someplace – the treasures coordinates are (x1, y1)! The coordinates (x1,y1)
@@ -26,7 +29,20 @@ will clue the Explorer to either keep going in the same direction or switch dire
 
 */
 
-int main() {
+int main()
+{
+
+    int x = 15, y = 15; // Explorer’s coordinates
+    int x1, y1;         // Treasure’s coordinates
+    char direction;
+    float distance;
+    bool treasure = false;
+
+    srand(time(0));       // secretly seed the rand function !
+    x1 = rand() % 30 + 1; // set X1 to random between 1 and 30
+    y1 = rand() % 30 + 1; // set y1 to random between 1and 30
+    
+    //write loop to find the treasure
 
     return 0;
 }
