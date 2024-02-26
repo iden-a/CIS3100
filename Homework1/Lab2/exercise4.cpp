@@ -27,15 +27,15 @@ int main() {
         cout << "You chose " << power << "!" << endl;
         cout << " you need to use your Super " << power << " to help the old lady that is stuck under the Empire State Building!" << endl;
 
-        string route;
+        char route;
 
         cout << "What route will you take to save the old lady? (A or B): ";
         cin >> route;
 
-        if (route == "A") {
+        if (route == 'A') {
             cout << "You were attacked by a pack of wolves on your way to the Empire State Building!" << endl;
         } 
-        else if (route == "B") {
+        else if (route == 'B') {
             cout << "You made it on time to save the old lady, congratulations!";
         }
         else {

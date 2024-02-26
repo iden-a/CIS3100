@@ -22,7 +22,7 @@ int main()
 {
     cout << fixed << setprecision(2);
     double annual_salary, tax_paid, net_salary, child_deduction_amount = 0;
-    string response, loan_response; // yes/no
+    char response, loan_response; // yes/no
 
     int children; // tax amount per child is 5%
 
@@ -45,7 +45,7 @@ int main()
     if (annual_salary <= 12000)
     {
         // if the user has children but does not pay student loans
-        if (response == "yes" && loan_response == "no")
+        if (response == 'y' || 'Y' && loan_response == 'n' || 'N')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -66,7 +66,7 @@ int main()
         }
 
         // if the user does not have child but they pay student loans
-        else if (response == "no" && loan_response == "yes")
+        else if (response == 'n' || 'N' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -97,7 +97,7 @@ int main()
         }
 
         // if the user has children AND they have student loans
-        else if (response == "yes" && loan_response == "yes")
+        else if (response == 'y' || 'Y' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -141,7 +141,7 @@ int main()
     else if (annual_salary >= 12001 && annual_salary <= 38000)
     {
         // if the user has children but does not pay student loans
-        if (response == "yes" && loan_response == "no")
+        if (response == 'y' || 'Y' && loan_response == 'n' || 'N')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -162,7 +162,7 @@ int main()
         }
 
         // if the user does not have child but they pay student loans
-        else if (response == "no" && loan_response == "yes")
+        else if (response == 'n' || 'N' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -193,7 +193,7 @@ int main()
         }
 
         // if the user has children AND they have student loans
-        else if (response == "yes" && loan_response == "yes")
+        else if (response == 'y' || 'Y' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -238,7 +238,7 @@ int main()
     {
 
         // if the user has children but does not pay student loans
-        if (response == "yes" && loan_response == "no")
+        if (response == 'y' || 'Y' && loan_response == 'n' || 'N')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -259,7 +259,7 @@ int main()
         }
 
         // if the user does not have child but they pay student loans
-        else if (response == "no" && loan_response == "yes")
+        else if (response == 'n' || 'N' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -290,7 +290,7 @@ int main()
         }
 
         // if the user has children AND they have student loans
-        else if (response == "yes" && loan_response == "yes")
+        else if (response == 'y' || 'Y' && loan_response ==  'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -334,7 +334,7 @@ int main()
     else
     {
         // if the user has children but does not pay student loans
-        if (response == "yes" && loan_response == "no")
+        if (response == 'y' || 'Y' && loan_response == 'n' || 'N')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -355,7 +355,7 @@ int main()
         }
 
         // if the user does not have child but they pay student loans
-        else if (response == "no" && loan_response == "yes")
+        else if (response == 'n' || 'N' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
@@ -386,7 +386,7 @@ int main()
         }
 
         // if the user has children AND they have student loans
-        else if (response == "yes" && loan_response == "yes")
+        else if (response == 'y' || 'Y' && loan_response == 'y' || 'Y')
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;

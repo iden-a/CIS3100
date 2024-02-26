@@ -41,7 +41,7 @@ int main()
     {
         // this is the second loop we are doing
         for (int j = 0; j < 3; j++)
-        // for the first iteration, if value i and greater than value j -- swap. This will continue for each iteration in the list
+        // for the first iteration, if value i is less than value j -- swap. This will continue for each iteration in the list
         {if (array[i] < array[j])
             {
                 char temp = array[i];  // if i is less than j, we will store i in the temp variable.
