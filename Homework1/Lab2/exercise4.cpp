@@ -17,25 +17,25 @@ int main() {
     cout << "**********************************************" << endl;
 
     // asking the user what superpower they want and storing their answer in the power variable.
-    cout << "What is your SuperPower? Options (Strength, Visibility, MindReading, Speed)" << endl;
+    cout << "What is your SuperPower? Options (Strength, Invisibility, MindReading, Speed)" << endl;
     cin >> power;
 
 
 
     // if they chose strength as their power, they will be prompted with a scenario for strength
-    if (power == "strength") {
+    if (power == "strength" || power == "Strength" || power == "STRENGTH") {
         cout << "You chose " << power << "!" << endl;
-        cout << " you need to use your Super " << power << " to help the old lady that is stuck under the Empire State Building!" << endl;
+        cout << "You need to use your Super " << power << " to help the old lady that is stuck under the Empire State Building!" << endl;
 
         char route;
 
         cout << "What route will you take to save the old lady? (A or B): ";
         cin >> route;
 
-        if (route == 'A') {
+        if (route == 'A' || route == 'a') {
             cout << "You were attacked by a pack of wolves on your way to the Empire State Building!" << endl;
         } 
-        else if (route == 'B') {
+        else if (route == 'B' || route == 'b') {
             cout << "You made it on time to save the old lady, congratulations!";
         }
         else {
@@ -46,7 +46,7 @@ int main() {
 
 
     // if they chose invisibility as their power, they will be prompted with a scenario for strength
-    else if (power == "invisibility") {
+    else if (power == "invisibility" || power == "Invisibility" || power == "INVISIBILITY") {
         cout << "You chose " << power << "!" << endl;
         cout << "You need to use your " << power << " power to go into MoJo JoJo's Evil Lab and spy on his evil plans to destroy NYC!" << endl;
 
@@ -57,11 +57,11 @@ int main() {
 
 
         // different output depending on what the user picks
-        if (color == "blue") {
+        if (color == "blue" || color == "BLUE" || color == "Blue") {
             cout << "You were able to use your invisibility to sneak into the lair and save the princess!";
         }
 
-        else if (color == "red") {
+        else if (color == "red" || color == "Red" || color == "RED") {
             cout << "You invisibility powers ran out when you got into the lab, MoJo JoJo caught you!" << endl;
         }
 
@@ -72,21 +72,21 @@ int main() {
     }
 
     // if they chose mindreading as their power, they will be prompted with a scenario for strength
-    else if (power == "mindreading") {
+    else if (power == "mindreading" || power == "Mindreading" || power == "MINDREADING") {
         cout << "You chose " << power << "!" << endl;
-        cout << " you need to use your " << power << " abilities to read the mind of the bank robbers to figure out where their next heist will be!" << endl;
+        cout << "You need to use your " << power << " abilities to read the mind of the bank robbers to figure out where their next heist will be!" << endl;
 
         // ask them who's mind they will be reading 
-        string person;
+        char person;
         cout << "You have to decide who the robber is, who's mind are you reading (A or B)" << endl;
         cin >> person;
 
         // different output depending on what the user picks
-        if (person == "A") {
+        if (person == 'A' || person == 'a') {
             cout << "You were able to successfully read the mind of Person A and stop their crew from robbing the bank!";
         }
 
-        else if (person == "B") {
+        else if (person == 'B' || person == 'b') {
             cout << "You read the mind of the ring leader! You have uncovered the get away location!";
         }
 
@@ -97,7 +97,7 @@ int main() {
     }
 
     // if they chose time travel as their power, they will be prompted with a scenario for strength
-    else if (power == "speed"){
+    else if (power == "speed" || power == "Speed" || power == "SPEED"){
         cout << "You chose " << power << "!" << endl;
         cout << "You need to use your " << power << " abilities to travel back in time to stop the killer from escaping! " << endl;
 
@@ -130,6 +130,8 @@ int main() {
     else {
         cout << "You did not choose a valid superpower!";
     }
+
+    cout << endl << endl;
 
     return 0;
 }
