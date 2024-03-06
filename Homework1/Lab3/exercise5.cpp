@@ -44,7 +44,7 @@ int main() {
     cout << "You are " << distance << " steps away from the treasure." << endl;
     cout << "START!" << endl;
 
-    while (x != x1 && y != y1) {
+    while (x != x1 || y != y1) {
         cout << "Enter Direction (n,s,e,w), or x to exit: ";
         cin >> direction;
 
@@ -63,7 +63,7 @@ int main() {
             cout << "Invalid direction. Please enter (n, s, e, w) or x to exit." << endl;
             continue;
         }
-
+        cout <<"treasure is at " << x1 << ", " <<y1<<endl;
         distance = sqrt(static_cast<double>((x - x1) * (x - x1) + (y - y1) * (y - y1)));
         cout << "You are " << distance << " steps away from the treasure." << endl;
         cout << "Explorer's Coordinates: (" << x << ", " << y << ")" << endl;

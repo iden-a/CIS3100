@@ -1,5 +1,5 @@
 #include <iostream>
-#include <iomanip> // importing library for setprecision
+// #include <iomanip> // importing library for setprecision
 using namespace std;
 
 /* Write a program for the IRS that will calculate income tax. You will need as input the person’s
@@ -20,7 +20,7 @@ the pre-tax annual salary (after child deduction).
 
 int main()
 {
-    cout << fixed << setprecision(2);
+    // cout << fixed << setprecision(2);
     double annual_salary, tax_paid, net_salary, child_deduction_amount = 0;
     char response, loan_response; // yes/no
 
@@ -45,7 +45,7 @@ int main()
     if (annual_salary <= 12000)
     {
         // if the user has children but does not pay student loans
-        if (response == 'y' || 'Y' && loan_response == 'n' || 'N')
+        if ( (response == 'y' || response ==  'Y')  &&  (loan_response == 'n' || loan_response ==  'N')) 
         {
             cout << "___________________________________________________________________________" << endl;
             cout << endl;
