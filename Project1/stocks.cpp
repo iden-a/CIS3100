@@ -6,6 +6,9 @@ using namespace std;
 /*
 Resources Used:
 Traversing a Map and unordered_map in C++ STL: https://www.geeksforgeeks.org/traversing-a-map-or-unordered_map-in-cpp-stl/
+
+I was having issues with my complier, that is why I am specifying the type with typedef
+https://stackoverflow.com/questions/2566027/what-is-the-use-of-typedef
 */
 
 // Define an array to hold number of shares, purchase price, and current value, this represents the StockInfo
@@ -23,29 +26,30 @@ double calculatePortfolioValue();
 void displayMenu();
 
 int main() {
-    char choice;
+    int choice;
     do {
+        // prompting the user to pick a menu item
         displayMenu();
         cin >> choice;
         switch (choice) {
-            case '1':
+            case 1:
                 cout << endl;
                 addStock();
                 break;
-            case '2':
+            case 2:
                 cout << endl;
                 deleteStock();
                 break;
-            case '3':
+            case 3:
                 cout << endl;
                 viewPortfolio();
                 cout << endl;
                 break;
-            case '4':
+            case 4:
                 cout << endl;
                 cout << "Total Portfolio Value: $" << calculatePortfolioValue() << endl;
                 break;
-            case '5':
+            case 5:
                 cout << endl;
                 cout << "Exiting program." << endl;
                 break;
@@ -53,7 +57,7 @@ int main() {
                 cout << endl;
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != '5');
+    } while (choice != 5); // as long as the user decides to not exit the program, the loop will run.
 
     return 0;
 }
@@ -109,8 +113,9 @@ void viewPortfolio() {
     // if the portfolio is not empty this will run 
     cout << " STOCK PORTFOLIO " << endl;
     cout << endl;
+
     // Define the iterator type
-    // we are iterating over a hashmap, we are defining our iterator as a constant bc it will not be modified
+    // we are iterating over a hashmap, we are defining our iterator as a constant bc we will not be changing the values inside of portfolio
     typedef unordered_map<string, StockInfo>::const_iterator PortfolioIterator;
 
     // it stands for iterator 
@@ -129,24 +134,18 @@ void viewPortfolio() {
 double calculatePortfolioValue() {
     double totalValue = 0;
 
-    // By using const_iterator, we indicate that we will not modify the elements of the map while traversing it.
+    // we are using the const_iterator because we only want to read the data values, there is no intention of changing the values.
+    // we want to ensure that there is no modification of the values as we are iterating over them.
     typedef unordered_map<string, StockInfo>::const_iterator PortfolioIterator;
 
-    // Iterate over the portfolio and calculate the total value
-    //  initializes the iterator i to point to the beginning of the portfolio map. 
-    // It starts the loop by pointing to the first element of the map.
-
-    // This condition checks whether the iterator i has reached the end of the portfolio map. If i is not equal to portfolio.end(), 
-    // the loop continues. portfolio.end() returns an iterator pointing to the position just past the last element of the map.
-
-    // we iterate over the portfolio, making sure that the first value is not also the last value!
+    // we iterate over the portfolio, the loop will continue until we reach the last value.
     // it = { Symbol : [NumberOfShares, PurchasePrice, CurrentValue]}  
     for (PortfolioIterator it = portfolio.begin(); it != portfolio.end(); it++) {
         const StockInfo &stockInfo = it->second; // it->second refers // it->second = [NumberOfShares, PurchasePrice, CurrentValue]
         totalValue += stockInfo[2]; // stockInfo[2] == CurrentValue 
     }
 
-    return totalValue;
+    return totalValue; // returning the totalValue to the user
 }
 
 
