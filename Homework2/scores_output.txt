@@ -1,0 +1,36 @@
+Original Exam Scores:
+
+Exam 1 Scores: 
+    80    85    70    90    88    92
+    86    72    84    91    77    82
+    85    73    95    81    74    87
+    79    83
+
+
+Exam 2 Scores: 
+    75    65    88    93    80    94
+    83    78    86    75    65    80
+    89    92    70    87    91    77
+    84    82
+
+
+Exam 3 Scores: 
+    90    95    78    70    85    88
+    92    89    82    87    95    84
+    90    78    85    76    81    94
+    91    96
+
+
+
+
+Weighted Averages: 
+    83    83    80    81    83    90
+    88    82    83    83    82    82
+    88    81    81    80    83    87
+    86    89
+
+
+The smallest element in Exam 1 is 70 this value occurs in position 2 of the array.
+The smallest element in Exam 2 is 65 this value occurs in position 1 of the array.
+The smallest element in Exam 3 is 70 this value occurs in position 3 of the array.
+The smallest element in Weighted Averages is 80 this value occurs in position 2 of the array.
