@@ -78,9 +78,9 @@ double getvalidinput(const string &prompt, const string &error) {
 
         // Check if the input is a valid number and meets the condition
         if (input >= 1) {
-            break;  // Valid input, exit the loop
+            break;  
         } else {
-            // Not valid, show error message and clear the input buffer
+            // Not valid, show error message 
             cout << error << endl;
         }
     }
