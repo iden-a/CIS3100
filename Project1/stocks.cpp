@@ -7,6 +7,8 @@ using namespace std;
 Resources Used:
 Traversing a Map and unordered_map in C++ STL: https://www.geeksforgeeks.org/traversing-a-map-or-unordered_map-in-cpp-stl/
 
+Dealing with cin failure: https://stackoverflow.com/questions/5864540/infinite-loop-with-cin-when-typing-string-while-a-number-is-expected
+
 I was having issues with my complier, that is why I am specifying the type with typedef
 https://stackoverflow.com/questions/2566027/what-is-the-use-of-typedef
 */
@@ -16,16 +18,19 @@ typedef array<double, 3> StockInfo;
 
 typedef unordered_map<string, StockInfo> StockData; // StockData - {Key: Value} { Symbol : [NumberOfShares, PurchasePrice, CurrentValue]}
 
-StockData portfolio; // Define the portfolio as a global variable
 
 // Function prototypes
-void addStock();
-void deleteStock();
-void viewPortfolio();
-double calculatePortfolioValue();
+void addStock(StockData &portfolio);
+void deleteStock(StockData &portfolio);
+void viewPortfolio(StockData &portfolio);
+double calculatePortfolioValue(StockData &portfolio);
+double getvalidinput( const string &prompt, const string &error);
 void displayMenu();
 
 int main() {
+
+    StockData portfolio; // Define the portfolio as a global variable
+
     int choice;
     do {
         // prompting the user to pick a menu item
@@ -34,20 +39,20 @@ int main() {
         switch (choice) {
             case 1:
                 cout << endl;
-                addStock();
+                addStock(portfolio);
                 break;
             case 2:
                 cout << endl;
-                deleteStock();
+                deleteStock(portfolio);
                 break;
             case 3:
                 cout << endl;
-                viewPortfolio();
+                viewPortfolio(portfolio);
                 cout << endl;
                 break;
             case 4:
                 cout << endl;
-                cout << "Total Portfolio Value: $" << calculatePortfolioValue() << endl;
+                cout << "Total Portfolio Value: $" << calculatePortfolioValue(portfolio) << endl;
                 break;
             case 5:
                 cout << endl;
@@ -62,31 +67,69 @@ int main() {
     return 0;
 }
 
-void addStock() {
+double getvalidinput(const string &prompt, const string &error) {
+
+    double input;
+
+    // this will execute when the function is called
+    while (true) {
+        cout << prompt; 
+        cin >> input;
+
+        // Check if the input is a valid number and meets the condition
+        if (input >= 1) {
+            break;  // Valid input, exit the loop
+        } else {
+            // Not valid, show error message and clear the input buffer
+            cout << error << endl;
+        }
+    }
+
+    return input;
+}
+
+
+void addStock(StockData &portfolio) {
     // getting the symbol from the user
     string symbol;
     cout << "Enter stock symbol: ";
     cin >> symbol;
 
+    if (cin.fail()) {
+        cout << "ERROR -- Input error occurred";
+
+    // Clear the failure state
+        cin.clear(); 
+
+    // Discard any incorrect input left in the input buffer
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else {
     // Check if the stock already exists in the portfolio using the symbol given from the user
+    // portfolio.find() - search operation 
+    // portfolio.end() - signifies the end of the portfolio 
+    // if our search operation does not reach the end of our portfolio, it means it found a symbol that already exists
     if (portfolio.find(symbol) != portfolio.end()) {
         cout << "Stock already exists in the portfolio." << endl;
         return;
+        }
     }
-
     
     // stockInfo is initialize as an array following the StockInfo template [NumberOfShares, PurchasePrice, CurrentValue]
     StockInfo stockInfo;
-    cout << "Enter number of shares: ";
-    cin >> stockInfo[0]; // Number of shares 1st index 
-    cout << "Enter purchase price per share: $";
-    cin >> stockInfo[1]; // Purchase price 2nd index
-    stockInfo[2] = stockInfo[0] * stockInfo[1];   // Calculate and store current value in the 3rd index
+    // double numShares = getvalidinput();
+    double numShares = getvalidinput("Enter Number of Shares: ", "Please enter a positive Number of Shares.");
+
+    double purchasePrice = getvalidinput("Enter Purchase Price: ", "Purchase Price value must be positive.");
+    
+    double currentVal = numShares * purchasePrice;
+
+    stockInfo[0] = numShares;
+    stockInfo[1] = purchasePrice;
+    stockInfo[2] = currentVal;   // Calculate and store current value in the 3rd index
     portfolio[symbol] = stockInfo; 
-    // portfolio is a global variable - {Key: Value} { Symbol : [NumberOfShares, PurchasePrice, CurrentValue]}
 }
 
-void deleteStock() {
+void deleteStock(StockData &portfolio) {
     // getting the symbol from the user
     string symbol;
     cout << "Enter stock symbol to delete: ";
@@ -103,7 +146,7 @@ void deleteStock() {
 }
 
 
-void viewPortfolio() {
+void viewPortfolio(StockData &portfolio) {
     // checking to see if the portfolio is empty 
     if (portfolio.empty()) {
         cout << "Portfolio is empty." << endl;
@@ -131,7 +174,7 @@ void viewPortfolio() {
     }
 }
 
-double calculatePortfolioValue() {
+double calculatePortfolioValue(StockData &portfolio) {
     double totalValue = 0;
 
     // we are using the const_iterator because we only want to read the data values, there is no intention of changing the values.
