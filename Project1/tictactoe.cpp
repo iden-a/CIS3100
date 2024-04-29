@@ -1,9 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// having issues with the win, loss, draw function 
-// draw should only appear if the board is completely filled 
-// win and loss is showing up correctly so far!
 
 void displayBoard(char [][3], int ,int);
 void getPlayerChoice(char [][3]);
@@ -77,16 +74,16 @@ bool playerWinOrLose(char board[][3], char player) {
 
 void getResult(char board[][3]){
 
-    bool boardFilled = false;
+    bool boardFilled = true;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (board[i][j] != '_') {
-                boardFilled = true;
+            if (board[i][j] == '-') {
+                boardFilled = false;
                 break; // this is exiting the inner loop
             }
         }
         // we need to also check the outer loop, so  our loop isnt continuing on for no reason 
-        if (boardFilled) 
+        if (!boardFilled) 
             break;
     }
 
@@ -98,7 +95,7 @@ void getResult(char board[][3]){
     else if (playerWinOrLose(board, 'O')) 
         cout << "Player O Wins!" << "Board Filled " << boardFilled << endl;
 
-    else if (!boardFilled) 
+    else if (boardFilled) 
         cout << "Draw!  " << "ConsoleLogo:" << boardFilled << endl;
         
 
@@ -110,8 +107,6 @@ void getPlayerChoice(char board[][3]) {
     int user_row, user_col;
 
     int player = 1;
-
-
 
     do {
         
@@ -145,15 +140,13 @@ void getPlayerChoice(char board[][3]) {
         displayBoard(board,3,3);
         getResult(board);
 
-
-
         // switch the players 
         player = (player == 1 ? 2 : 1);
         // if player is at 1, switch the player to 2, if not switch to 1
         
     // the loop will run as long as player X has not won and play O has not won
     // it will also continue as long as there is no space left on the board
-    } while (!playerWinOrLose(board, 'X') || !playerWinOrLose(board, 'O') || (board[user_row][user_col] != '-'));
+    } while (!playerWinOrLose(board, 'X') && !playerWinOrLose(board, 'O') && (board[user_row][user_col] != '-'));
 
 }
 
