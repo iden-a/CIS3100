@@ -6,24 +6,48 @@ void displayBoard(char [][3], int ,int);
 void getPlayerChoice(char [][3]);
 bool playerWinOrLose(char [][3], char);
 void getResult(char [][3]);
+void resetBoard(char [][3], int ,int);
+void displayMenu();
 
 int main() {
 
-char board[3][3] = {
-                        {'-', '-', '-'},
-						{'-', '-', '-'},
-						{'-', '-', '-'}
-};
+    char board[3][3] = {
+        {'_', '_', '_'},
+	    {'_', '_', '_'},
+	    {'_', '_', '_'}
+    };
 
-    cout << "Tic-Tac-Toe" << endl;
-    displayBoard(board, 3, 3);
-    getPlayerChoice(board);
+    // create a display menu function to allows user to enter the game, exit the game
+    int choice;
+    do {
+        displayMenu();
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+            cout << endl;
+            displayBoard(board, 3,3);
+            getPlayerChoice(board);
+            break;
+
+            case 2:
+            cout << endl;
+            cout << "Exiting the Game!" << endl;
+            break;
+
+            default:
+            cout << "Invalid Choice";
+        }
+    
+    } while( choice != 2);
 
     return 0;
 }
 
 void displayBoard(char board[][3], int rows, int cols) {
 
+    cout << "Player 1 - X " << endl;
+    cout << "Player 2 - O " << endl;
     for (int i = 0; i < rows; i++)
 	    {
 		    for (int j = 0; j < cols; j++)
@@ -74,31 +98,33 @@ bool playerWinOrLose(char board[][3], char player) {
 
 void getResult(char board[][3]){
 
-    bool boardFilled = true;
+    bool boardFilled = true; // setting the condition to true 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (board[i][j] == '-') {
-                boardFilled = false;
+            if (board[i][j] == '_') { // if we see the the board is empty 
+                boardFilled = false; // we change the condition to false 
                 break; // this is exiting the inner loop
             }
         }
-        // we need to also check the outer loop, so  our loop isnt continuing on for no reason 
-        if (!boardFilled) 
-            break;
     }
 
-
-    // calling the playerWinLose function to get the result 
-    if (playerWinOrLose(board, 'X'))
-        cout << "Player X Wins!   " << "Board Filled " << boardFilled << endl;
-    
-    else if (playerWinOrLose(board, 'O')) 
-        cout << "Player O Wins!" << "Board Filled " << boardFilled << endl;
-
-    else if (boardFilled) 
-        cout << "Draw!  " << "ConsoleLogo:" << boardFilled << endl;
-        
-
+    // calling the playerWinLose function to get the result  
+    // in case of win, lose, or draw we want to reset the board so another game can occur
+    if (playerWinOrLose(board, 'X')) {
+        cout << "Player X Wins!" << endl;
+        resetBoard(board, 3,3);
+    }
+    else if (playerWinOrLose(board, 'O')) {
+        cout << "Player O Wins!" << endl;
+        resetBoard(board, 3,3);
+    }
+    else if (boardFilled)  {
+        cout << "Draw! " << endl;
+        resetBoard(board, 3,3);
+    }
+    else {
+        cout << "Continue Playing! (1 - True | 0 - False): " << boardFilled << endl;
+    }
 };
 
 
@@ -109,29 +135,31 @@ void getPlayerChoice(char board[][3]) {
     int player = 1;
 
     do {
-        
         cout << endl;
-        cout << "Go!" << endl;
         // check to see which player it is 
+        cout << "Player " << player << " Go!" << endl;
+
         // get the row
         cout << "Enter Row: ";
         cin >> user_row;
-
+        // get the column 
         cout << "Enter Column: ";
         cin >> user_col;
-        // get the column 
 
-        user_row--;
+        // making the user_row and user_col match the proper index position
+        user_row--; 
         user_col--;
 
         // make sure the user inputted row and column does not exceed the board values 
-        if (user_row < 0 || user_row >= 3 || user_col < 0 || user_col >= 3 || board[user_row][user_col] != '-' ) {
-            cout << "Invalid Move. Try Again.";
+        // if the board[row][col] != '-' then it must be equal to X or O, placing a value there would be invalid
+        if (user_row < 0 || user_row >= 3 || user_col < 0 || user_col >= 3 || board[user_row][user_col] != '_' ) {
+            cout << "Invalid Move. Try Again." << endl;
             continue;
         }
 
 
         // update the board with the player that is currently playing
+        // if it is not player 1 then it must be player 2
         board[user_row][user_col] = (player == 1 ? 'X' : 'O');
 
         // display the board - call the function
@@ -141,12 +169,36 @@ void getPlayerChoice(char board[][3]) {
         getResult(board);
 
         // switch the players 
-        player = (player == 1 ? 2 : 1);
         // if player is at 1, switch the player to 2, if not switch to 1
+        player = (player == 1 ? 2 : 1);
         
     // the loop will run as long as player X has not won and play O has not won
     // it will also continue as long as there is no space left on the board
-    } while (!playerWinOrLose(board, 'X') && !playerWinOrLose(board, 'O') && (board[user_row][user_col] != '-'));
+    } while (!playerWinOrLose(board, 'X') && !playerWinOrLose(board, 'O') && (board[user_row][user_col] != '_'));
+
+}
+void resetBoard(char board[][3], int rows, int cols) {
+
+        for (int i = 0; i < rows; i++)
+	    {
+		    for (int j = 0; j < cols; j++)
+		    {
+			    board[i][j] = '_';
+		    }
+		    cout << endl;
+	    }
+	    return;
 
 }
 
+void displayMenu() {
+    cout << endl;
+    cout << "-------------------------" << endl;
+    cout << " Tic-Tac-Toe Menu System " << endl;
+    cout << endl;
+    cout << " 1. Play!" << endl;
+    cout << " 2. Quit. " << endl;
+    cout << endl;
+    cout << "-------------------------" << endl;
+    cout << " Choice: ";
+}
