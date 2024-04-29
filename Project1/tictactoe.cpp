@@ -32,11 +32,11 @@ int main() {
 
             case 2:
             cout << endl;
-            cout << "Exiting the Game!" << endl;
+            cout << " Exiting the Game!" << endl;
             break;
 
             default:
-            cout << "Invalid Choice";
+            cout << " Invalid Choice" << endl;
         }
     
     } while( choice != 2);
@@ -46,15 +46,16 @@ int main() {
 
 void displayBoard(char board[][3], int rows, int cols) {
 
-    cout << "Player 1 - X " << endl;
-    cout << "Player 2 - O " << endl;
+    cout << " Player 1 - X " << endl;
+    cout << " Player 2 - O " << endl << endl;
     for (int i = 0; i < rows; i++)
 	    {
+            cout << "\t"; // Add a tab before each row
 		    for (int j = 0; j < cols; j++)
 		    {
 			    cout << board[i][j] << " ";
 		    }
-		    cout << endl;
+		    cout << endl << endl;
 
 	    }
 	    return;
@@ -111,19 +112,20 @@ void getResult(char board[][3]){
     // calling the playerWinLose function to get the result  
     // in case of win, lose, or draw we want to reset the board so another game can occur
     if (playerWinOrLose(board, 'X')) {
-        cout << "Player X Wins!" << endl;
+        cout << " Player 1 - Team X Wins!" << endl;
         resetBoard(board, 3,3);
     }
     else if (playerWinOrLose(board, 'O')) {
-        cout << "Player O Wins!" << endl;
+        cout << " Player 2 - Team O Wins!" << endl;
         resetBoard(board, 3,3);
     }
     else if (boardFilled)  {
-        cout << "Draw! " << endl;
+        cout << " Draw! " << endl;
         resetBoard(board, 3,3);
     }
     else {
-        cout << "Continue Playing! (1 - True | 0 - False): " << boardFilled << endl;
+        // cout << "Continue Playing! (1 - True | 0 - False): " << boardFilled << endl;
+        cout << " Continue Playing!" << endl;
     }
 };
 
@@ -137,13 +139,13 @@ void getPlayerChoice(char board[][3]) {
     do {
         cout << endl;
         // check to see which player it is 
-        cout << "Player " << player << " Go!" << endl;
+        cout << " Player " << player << " Go!" << endl;
 
         // get the row
-        cout << "Enter Row: ";
+        cout << " Enter Row: ";
         cin >> user_row;
         // get the column 
-        cout << "Enter Column: ";
+        cout << " Enter Column: ";
         cin >> user_col;
 
         // making the user_row and user_col match the proper index position
@@ -153,7 +155,7 @@ void getPlayerChoice(char board[][3]) {
         // make sure the user inputted row and column does not exceed the board values 
         // if the board[row][col] != '-' then it must be equal to X or O, placing a value there would be invalid
         if (user_row < 0 || user_row >= 3 || user_col < 0 || user_col >= 3 || board[user_row][user_col] != '_' ) {
-            cout << "Invalid Move. Try Again." << endl;
+            cout << " Invalid Move. Try Again." << endl;
             continue;
         }
 
@@ -177,6 +179,7 @@ void getPlayerChoice(char board[][3]) {
     } while (!playerWinOrLose(board, 'X') && !playerWinOrLose(board, 'O') && (board[user_row][user_col] != '_'));
 
 }
+
 void resetBoard(char board[][3], int rows, int cols) {
 
         for (int i = 0; i < rows; i++)
@@ -188,17 +191,16 @@ void resetBoard(char board[][3], int rows, int cols) {
 		    cout << endl;
 	    }
 	    return;
-
 }
 
 void displayMenu() {
     cout << endl;
-    cout << "-------------------------" << endl;
-    cout << " Tic-Tac-Toe Menu System " << endl;
+    cout << "-----------------------------" << endl;
+    cout << " -- Tic-Tac-Toe Dashboard -- " << endl;
     cout << endl;
     cout << " 1. Play!" << endl;
     cout << " 2. Quit. " << endl;
     cout << endl;
-    cout << "-------------------------" << endl;
+    cout << "-----------------------------" << endl;
     cout << " Choice: ";
 }
