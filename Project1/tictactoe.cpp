@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// function prototypes
 void displayBoard(char [][3], int ,int);
 void getPlayerChoice(char [][3]);
 bool playerWinOrLose(char [][3], char); 
@@ -9,12 +10,12 @@ void resetBoard(char [][3], int ,int);
 void displayMenu(); 
 
 int main() {
-
+                    // the board
 char board[3][3] = { { ' ', ' ', ' ' }, 
                      { ' ', ' ', ' ' }, 
                      { ' ', ' ', ' ' } }; 
 
-    // create a display menu function to allows user to enter the game, exit the game
+    // do while loop to display game menu and enter/exit the game
     int choice;
     do {
         displayMenu();
@@ -36,20 +37,20 @@ char board[3][3] = { { ' ', ' ', ' ' },
             cout << "\tInvalid Choice" << endl;
         }
     
-    } while( choice != 2);
+    } while( choice != 2); // loop continues as long as users do not pick 2
 
     return 0;
 }
 
 void displayBoard(char board[][3], int rows, int cols) {
-
+    // utilizing tab for a more appealing UI
+    // printing to board to the console for interaction w/ users
     cout << "\tPlayer 1 - X " << endl;
     cout << "\tPlayer 2 - O " << endl << endl;
-    cout << ""; // Add a tab before each row
     cout << "\t-------------" << endl;
     for (int i = 0; i < rows; i++)
 	    {
-            cout << "\t| "; // add a tab before each row
+            cout << "\t| ";
 
 		    for (int j = 0; j < cols; j++) {
 			    cout << board[i][j] << " | ";
@@ -58,44 +59,43 @@ void displayBoard(char board[][3], int rows, int cols) {
             cout << "\t-------------" << endl;
 
 	    }
-       
-
 	    return;
 }
 
 bool playerWinOrLose(char board[][3], char player) {
+
     /*  EXAMPLE BOARD W/ INDEX
         0 [0 1 2] 
         1 [0 1 2]
         2 [0 1 2]
     */
-    // check the rows  - for loop iterating over the board 
+
+    // check the rows  - if a player gets a row, return true
     for (int row = 0; row < 3; row++) {
         if (board[row][0] == player  && board[row][1] == player && board[row][2] == player){
             return true;
         }
     }
 
-    // check the columns 
+    // check the columns - if a players gets a column, return true
     for (int col = 0; col < 3; col++) {
         if (board[0][col] == player && board[1][col] == player && board[2][col] == player) {
             return true;
         }
     }
     
-    // check the first diagonal
+    // check the first diagonal - if a player gets a diagonal return true
     if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
         return true;
     }
 
-    // check the second diagonal
+    // check the second diagonal - if a player gets a diagonal return true
     if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
         return true;
     }
 
-    // if none of the above work return false - no winner
+    // if none of the above work return false - no winner (draw)
     return false;
-
 }
 
 void getResult(char board[][3]) {
@@ -103,7 +103,7 @@ void getResult(char board[][3]) {
     bool boardFilled = true; // setting the condition to true 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (board[i][j] == ' ') { // if we see the the board is empty 
+            if (board[i][j] == ' ') { // if we see that any part of the board is empty 
                 boardFilled = false; // we change the condition to false 
                 break; // this is exiting the inner loop
             }
@@ -120,7 +120,7 @@ void getResult(char board[][3]) {
         cout << "\tPlayer 2 - Team O Wins!" << endl;
         resetBoard(board, 3,3);
     }
-    else if (boardFilled) {
+    else if (boardFilled) { // if the board is filled and there is no winner, then it must be a draw
         cout << "\tDraw! " << endl;
         resetBoard(board, 3,3);
     }
@@ -191,6 +191,7 @@ void resetBoard(char board[][3], int rows, int cols) {
 	    return;
 }
 
+//printing the menu
 void displayMenu() {
     cout << endl;
     cout << "\t-----------------------------" << endl;
