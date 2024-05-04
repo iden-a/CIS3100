@@ -52,15 +52,15 @@ int main() {
                 break;
             case 4:
                 cout << endl;
-                cout << "Total Portfolio Value: $" << calculatePortfolioValue(portfolio) << endl;
+                cout << " Total Portfolio Value: $" << calculatePortfolioValue(portfolio) << endl;
                 break;
             case 5:
                 cout << endl;
-                cout << "Exiting program." << endl;
+                cout << " Exiting program." << endl;
                 break;
             default:
                 cout << endl;
-                cout << "Invalid choice. Please try again." << endl;
+                cout << " Invalid choice. Please try again." << endl;
         }
     } while (choice != 5); // as long as the user decides to not exit the program, the loop will run.
 
@@ -68,17 +68,17 @@ int main() {
 }
 
 double getvalidinput(const string &prompt, const string &error) {
-
     double input;
+    bool validInput = false; // Initialize to false
 
-    // this will execute when the function is called
-    while (true) {
+    // Loop until valid input is received
+    while (!validInput) { // Loop as long as validInput is false
         cout << prompt; 
         cin >> input;
 
         // Check if the input is a valid number and meets the condition
         if (input >= 1) {
-            break;  
+            validInput = true; // Set validInput to true to exit the loop
         } else {
             // Not valid, show error message 
             cout << error << endl;
@@ -89,14 +89,15 @@ double getvalidinput(const string &prompt, const string &error) {
 }
 
 
+
 void addStock(StockData &portfolio) {
     // getting the symbol from the user
     string symbol;
-    cout << "Enter stock symbol: ";
+    cout << " Enter stock symbol: ";
     cin >> symbol;
 
     if (cin.fail()) {
-        cout << "ERROR -- Input error occurred";
+        cout << " ERROR -- Input error occurred";
 
     // Clear the failure state
         cin.clear(); 
@@ -109,39 +110,35 @@ void addStock(StockData &portfolio) {
     // portfolio.end() - signifies the end of the portfolio 
     // if our search operation does not reach the end of our portfolio, it means it found a symbol that already exists
     if (portfolio.find(symbol) != portfolio.end()) {
-        cout << "Stock already exists in the portfolio." << endl;
+        cout << " Stock already exists in the portfolio." << endl;
         return;
         }
     }
     
     // stockInfo is initialize as an array following the StockInfo template [NumberOfShares, PurchasePrice, CurrentValue]
     StockInfo stockInfo;
-    // double numShares = getvalidinput();
-    double numShares = getvalidinput("Enter Number of Shares: ", "Please enter a positive Number of Shares.");
-
-    double purchasePrice = getvalidinput("Enter Purchase Price: ", "Purchase Price value must be positive.");
-    
-    double currentVal = numShares * purchasePrice;
-
-    stockInfo[0] = numShares;
-    stockInfo[1] = purchasePrice;
-    stockInfo[2] = currentVal;   // Calculate and store current value in the 3rd index
-    portfolio[symbol] = stockInfo; 
+    // number of shares 
+    stockInfo[0] = getvalidinput(" Enter Number of Shares: ", " Please enter a positive Number of Shares.");;
+    // purchase price
+    stockInfo[1] =  getvalidinput(" Enter Purchase Price: $", " Purchase Price value must be positive.");
+    // current value
+    stockInfo[2] = stockInfo[0] * stockInfo[1];
+    portfolio[symbol] = stockInfo;
 }
 
 void deleteStock(StockData &portfolio) {
     // getting the symbol from the user
     string symbol;
-    cout << "Enter stock symbol to delete: ";
+    cout << " Enter stock symbol to delete: ";
     cin >> symbol;
 
     // Check if the stock exists in the portfolio, if it exists we delete it using the built in erase method
     if (portfolio.find(symbol) != portfolio.end()) {
         portfolio.erase(symbol);
-        cout << "Stock deleted successfully." << endl;
+        cout << " Stock deleted successfully." << endl;
     } else {
         // if it does not exist we let the user know
-        cout << "Stock symbol not found in the portfolio." << endl;
+        cout << " Stock symbol not found in the portfolio." << endl;
     }
 }
 
@@ -149,7 +146,7 @@ void deleteStock(StockData &portfolio) {
 void viewPortfolio(StockData &portfolio) {
     // checking to see if the portfolio is empty 
     if (portfolio.empty()) {
-        cout << "Portfolio is empty." << endl;
+        cout << " Portfolio is empty." << endl;
         return;
     }
 
@@ -193,13 +190,13 @@ double calculatePortfolioValue(StockData &portfolio) {
 
 
 void displayMenu() {
-    cout << " _________________________________________________" << endl;
-    cout << "| Stock Portfolio Management System               |" << endl;
-    cout << "| 1. Add Stock                                    |" << endl;
-    cout << "| 2. Delete Stock                                 |" << endl;
-    cout << "| 3. View Portfolio                               |" << endl;
-    cout << "| 4. Calculate Total Portfolio Value              |" << endl;
-    cout << "| 5. Exit                                         |" << endl;
-    cout << " _________________________________________________" << endl;
-    cout << "Enter your choice:  ";
+    cout << "  _________________________________________________" << endl;
+    cout << " | Stock Portfolio Management System               |" << endl;
+    cout << " | 1. Add Stock                                    |" << endl;
+    cout << " | 2. Delete Stock                                 |" << endl;
+    cout << " | 3. View Portfolio                               |" << endl;
+    cout << " | 4. Calculate Total Portfolio Value              |" << endl;
+    cout << " | 5. Exit                                         |" << endl;
+    cout << "  _________________________________________________" << endl;
+    cout << " Enter your choice:  ";
 }
