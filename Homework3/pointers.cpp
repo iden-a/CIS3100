@@ -4,11 +4,11 @@ using namespace std;
 int main() {
 
     cout << "Question #1: Pointer Basics" << endl;
-    int num = 10;
-    int* pNum = &num;
-    int** ppNum = &pNum;
-    cout << "First Pointer pNum: " << *pNum << endl;
-    cout << "Second Pointer ppNum: " << **ppNum << endl;
+    int num = 10; // setting num to 10
+    int* pNum = &num; // creating a pointer to reference the value inside of the num (10)
+    int** ppNum = &pNum; // creating a pointer to the pointer, ppNum is equal to pNum which references the value inside of num (10)
+    cout << "First Pointer pNum: " << *pNum << endl;  // this will return 10
+    cout << "Second Pointer ppNum: " << **ppNum << endl; // this will also return 10
     cout << endl;
 
 
